@@ -44,7 +44,7 @@ This project uses **Machine Learning** to enhance agricultural decision-making b
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 * **Languages**: Python, DAX (Power BI)
 * **Libraries**: pandas, numpy, scikit-learn, matplotlib, seaborn, pickle
