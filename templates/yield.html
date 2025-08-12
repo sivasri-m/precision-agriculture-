@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-100 flex flex-col items-center justify-center h-screen">
+    <h1 class="text-3xl font-bold text-blue-700 mb-4">Crop Yield Prediction</h1>
+
+    <form action="{{ url_for('yield_prediction') }}" method="post" class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <div class="space-y-4">
+            <input type="number" name="Year" placeholder="Year" class="input-field" required>
+            <input type="number" name="rainfall" placeholder="Rainfall (mm)" class="input-field" required>
+            <input type="number" name="pesticides" placeholder="Pesticides Used (Tonnes)" class="input-field" required>
+            <input type="number" name="temp" placeholder="Temperature (°C)" class="input-field" required>
+
+            <select name="Area" class="input-field" required>
+                <option value="" disabled selected>Select Area</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+                <option value="Angola">Angola</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Armenia">Armenia</option>
+                <option value="Australia">Australia</option>
+                <option value="Austria">Austria</option>
+                <option value="Azerbaijan">Azerbaijan</option>
+                <option value="Bangladesh">Bangladesh</option>
+                <option value="Brazil">Brazil</option>
+                <option value="Canada">Canada</option>
+                <option value="Colombia">Colombia</option>
+                <option value="Denmark">Denmark</option>
+                <option value="Egypt">Egypt</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Greece">Greece</option>
+                <option value="India">India</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="Italy">Italy</option>
+                <option value="Japan">Japan</option>
+                <option value="Mexico">Mexico</option>
+                <option value="Nepal">Nepal</option>
+                <option value="Netherlands">Netherlands</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="Pakistan">Pakistan</option>
+                <option value="Philippines">Philippines</option>
+                <option value="Poland">Poland</option>
+                <option value="Portugal">Portugal</option>
+                <option value="Romania">Romania</option>
+                <option value="Russia">Russia</option>
+                <option value="South Africa">South Africa</option>
+                <option value="Spain">Spain</option>
+                <option value="Sri Lanka">Sri Lanka</option>
+                <option value="Sweden">Sweden</option>
+                <option value="Switzerland">Switzerland</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Turkey">Turkey</option>
+                <option value="Ukraine">Ukraine</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="United States">United States</option>
+                <option value="Vietnam">Vietnam</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+
+            <select name="Item" class="input-field" required>
+                <option value="" disabled selected>Select Crop Type</option>
+                <option value="Maize">Maize</option>
+                <option value="Potatoes">Potatoes</option>
+                <option value="Rice, paddy">Rice, paddy</option>
+                <option value="Sorghum">Sorghum</option>
+                <option value="Soybeans">Soybeans</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Cassava">Cassava</option>
+                <option value="Sweet potatoes">Sweet potatoes</option>
+                <option value="Plantains and others">Plantains and others</option>
+                <option value="Yams">Yams</option>
+            </select>
+
+            <button type="submit" class="btn-blue">Predict Yield</button>
+        </div>
+    </form>
+
+    {% if prediction %}
+        <h2 class="mt-4 text-xl font-semibold text-blue-700">
+            Predicted Yield: <span class="text-blue-800 font-bold">{{ prediction }} hg/ha</span>
+        </h2>
+        
+        <!-- Back to Home Button -->
+        <a href="{{ url_for('home') }}" class="btn-home mt-4">Back to Home</a>
+    {% endif %}
+</body>
+
+<style>
+    .input-field {
+        width: 100%;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border 0.2s;
+    }
+    .input-field:focus {
+        border-color: blue;
+    }
+    .btn-blue {
+        width: 100%;
+        padding: 10px;
+        background-color: blue;
+        color: white;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+    .btn-blue:hover {
+        background-color: darkblue;
+    }
+    .btn-home {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: gray;
+        color: white;
+        font-weight: bold;
+        border-radius: 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .btn-home:hover {
+        background-color: darkgray;
+    }
+</style>
+</html>

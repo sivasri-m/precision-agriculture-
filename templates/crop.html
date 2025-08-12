@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-yellow-100 flex flex-col items-center justify-center h-screen">
+    <h1 class="text-3xl font-bold text-yellow-700 mb-4">Crop Recommendation System</h1>
+    
+    <form action="{{ url_for('crop') }}" method="post" class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <div class="space-y-4">
+            <input type="number" name="N" placeholder="Nitrogen" class="input-field" required>
+            <input type="number" name="P" placeholder="Phosphorus" class="input-field" required>
+            <input type="number" name="K" placeholder="Potassium" class="input-field" required>
+            <input type="number" name="temperature" placeholder="Temperature (°C)" class="input-field" required>
+            <input type="number" name="humidity" placeholder="Humidity (%)" class="input-field" required>
+            <input type="number" name="ph" placeholder="Soil pH" class="input-field" required>
+            <input type="number" name="rainfall" placeholder="Rainfall (mm)" class="input-field" required>
+            <button type="submit" class="btn-yellow">Recommend Crop</button>
+        </div>
+    </form>
+
+    {% if prediction %}
+        <h2 class="mt-4 text-xl font-semibold text-yellow-700">
+            Recommended Crop: <span class="text-yellow-800 font-bold">{{ prediction }}</span>
+        </h2>
+
+        <!-- Back to Home Button -->
+        <a href="{{ url_for('home') }}" class="btn-home mt-4">Back to Home</a>
+    {% endif %}
+</body>
+
+<style>
+    .input-field {
+        width: 100%;
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        outline: none;
+        transition: border 0.3s, box-shadow 0.3s;
+    }
+    .input-field:focus {
+        border-color: goldenrod;
+        box-shadow: 0 0 8px rgba(218, 165, 32, 0.5);
+    }
+    .btn-yellow {
+        width: 100%;
+        padding: 10px;
+        background-color: gold;
+        color: black;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out, background-color 0.3s;
+    }
+    .btn-yellow:hover {
+        background-color: goldenrod;
+        transform: scale(1.05);
+    }
+    .btn-home {
+        display: inline-block;
+        padding: 10px 15px;
+        background-color: gray;
+        color: white;
+        font-weight: bold;
+        border-radius: 6px;
+        text-align: center;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    .btn-home:hover {
+        background-color: darkgray;
+        transform: scale(1.05);
+    }
+</style>
+</html>
